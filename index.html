@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Antonio Díaz-Barceló Romero</title>
+  <meta name="description" content="Antonio Díaz-Barceló Romero — MBA candidate in AI & Data Analytics at Columbia Business School, former M&A and restructuring banker.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --columbia: #B9D9EB;
+      --columbia-soft: #E6F1F8;
+      --navy: #0B2545;
+      --blue: #1D4F91;
+      --bg: #FBFCFE;
+      --surface: #FFFFFF;
+      --text: #0B2545;
+      --muted: #4A5B72;
+      --line: #D7E3EE;
+      --chip-bg: #E6F1F8;
+      --chip-text: #1D4F91;
+      --shadow: 0 1px 2px rgba(11,37,69,.06), 0 8px 24px rgba(11,37,69,.06);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --columbia-soft: #13263D;
+        --bg: #0A1626;
+        --surface: #10203A;
+        --text: #E8F1F8;
+        --muted: #A9BCD0;
+        --line: #22385A;
+        --chip-bg: #1A3354;
+        --chip-text: #B9D9EB;
+        --blue: #8EC1E0;
+        --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 400 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--blue); text-underline-offset: 3px; }
+    :focus-visible { outline: 3px solid var(--columbia); outline-offset: 2px; border-radius: 6px; }
+    h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 650; line-height: 1.15; margin: 0; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+    /* Nav */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .wrap { display: flex; align-items: center; gap: 16px; height: 60px; }
+    .brand { font-family: Fraunces, Georgia, serif; font-weight: 650; font-size: 18px; color: var(--text); text-decoration: none; white-space: nowrap; }
+    .brand span { color: var(--blue); }
+    .nav ul { list-style: none; display: flex; gap: 4px; margin: 0 0 0 auto; padding: 0; }
+    .nav ul a {
+      display: block; padding: 6px 12px; border-radius: 999px; text-decoration: none;
+      color: var(--muted); font-weight: 500; font-size: 14px; transition: background .2s, color .2s;
+    }
+    .nav ul a:hover, .nav ul a.active { background: var(--chip-bg); color: var(--chip-text); }
+    @media (max-width: 640px) {
+      .nav ul .hide-sm { display: none; }
+      .brand .full { display: none; }
+    }
+    @media (min-width: 641px) { .brand .short { display: none; } }
+
+    /* Hero */
+    .hero { background: linear-gradient(180deg, var(--columbia-soft), var(--bg)); padding: 56px 0 40px; }
+    .hero .wrap { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .hero h1 { font-size: clamp(34px, 6vw, 56px); letter-spacing: -.01em; }
+    .hero p.lead { font-size: 18px; color: var(--muted); max-width: 560px; margin: 16px 0 24px; }
+    .photo {
+      width: 220px; height: 260px; object-fit: cover; object-position: center 20%;
+      border-radius: 24px; border: 6px solid var(--surface); box-shadow: var(--shadow);
+      background: var(--columbia);
+    }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px;
+      font-weight: 600; font-size: 14px; text-decoration: none; border: 1px solid var(--line);
+      background: var(--surface); color: var(--text); transition: transform .15s, border-color .15s;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: var(--blue); }
+    .btn.primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+    @media (prefers-color-scheme: dark) { :root .btn.primary { background: var(--columbia); color: var(--navy); border-color: var(--columbia); } }
+    .btn svg { width: 16px; height: 16px; fill: currentColor; }
+    @media (max-width: 720px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 24px; }
+      .photo { order: -1; width: 140px; height: 160px; border-radius: 20px; }
+    }
+
+    /* Tiles */
+    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 8px 0 8px; }
+    .tile {
+      display: block; padding: 18px; border-radius: var(--radius); text-decoration: none; color: var(--text);
+      background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+      transition: transform .15s, border-color .15s;
+    }
+    .tile:hover { transform: translateY(-2px); border-color: var(--blue); }
+    .tile .num { font-size: 12px; font-weight: 600; color: var(--blue); letter-spacing: .06em; }
+    .tile h3 { font-size: 20px; margin: 6px 0 4px; }
+    .tile p { margin: 0; font-size: 14px; color: var(--muted); }
+    @media (max-width: 720px) { .tiles { grid-template-columns: 1fr; } }
+
+    /* Sections */
+    section.block { padding: 56px 0 8px; }
+    .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+    .sec-head .num { font-weight: 600; color: var(--blue); font-size: 14px; }
+    .sec-head h2 { font-size: clamp(26px, 4vw, 34px); }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 22px; box-shadow: var(--shadow); margin-bottom: 16px;
+    }
+    .card-top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .card h3 { font-size: 21px; }
+    .role { font-weight: 600; margin-top: 4px; }
+    .meta { text-align: right; color: var(--muted); font-size: 14px; white-space: nowrap; }
+    @media (max-width: 560px) { .meta { text-align: left; white-space: normal; } }
+    .card ul { margin: 14px 0 0; padding-left: 20px; }
+    .card li { margin: 6px 0; }
+    .card li::marker { color: var(--blue); }
+    dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 14px 0 0; }
+    dl.facts dt { font-weight: 600; color: var(--muted); font-size: 14px; padding-top: 2px; }
+    dl.facts dd { margin: 0; }
+    @media (max-width: 560px) { dl.facts { grid-template-columns: 1fr; gap: 2px; } dl.facts dd { margin-bottom: 10px; } }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { background: var(--chip-bg); color: var(--chip-text); font-size: 13px; font-weight: 500; padding: 4px 10px; border-radius: 999px; }
+
+    /* Experience timeline */
+    .timeline { position: relative; padding-left: 26px; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+    .timeline .card { position: relative; }
+    .timeline .card::before {
+      content: ""; position: absolute; left: -26px; top: 28px; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--columbia); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--blue);
+    }
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details .toggle { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--blue); }
+    details[open] .toggle .more, details:not([open]) .toggle .less { display: none; }
+
+    /* Additional info grid */
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .info-grid .card { margin: 0; }
+    .info-grid .label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+    @media (max-width: 640px) { .info-grid { grid-template-columns: 1fr; } }
+
+    footer { margin-top: 64px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="full">Antonio Díaz-Barceló <span>Romero</span></span><span class="short">A. Díaz-Barceló</span></a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#additional">More</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">MBA · AI &amp; Data Analytics · Columbia Business School</span>
+        <h1>Hi, I'm Antonio.</h1>
+        <p class="lead">Civil engineer turned investment banker, now building at the intersection of finance and AI. Experience across M&amp;A, restructuring and infrastructure in Madrid and London — currently at Columbia Business School in New York.</p>
+        <div class="links">
+          <a class="btn primary" href="mailto:adiazbarceloromero27@gsb.columbia.edu">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13Zm2 .9V18h16V6.4l-8 5.6-8-5.6ZM18.3 6H5.7L12 10.4 18.3 6Z"/></svg>
+            Email me
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/antonio-d%C3%ADaz-barcel%C3%B3-romero-b43325a0" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5Z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/antoniodiazbarceloromero-code" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <img class="photo" src="IMG_2162%20(1).JPG" alt="Portrait of Antonio Díaz-Barceló Romero">
+    </div>
+
+    <div class="wrap">
+      <div class="tiles" style="margin-top:36px">
+        <a class="tile" href="#education">
+          <div class="num">01</div>
+          <h3>Education</h3>
+          <p>Columbia MBA · UPM &amp; École des Ponts double degree</p>
+        </a>
+        <a class="tile" href="#experience">
+          <div class="num">02</div>
+          <h3>Experience</h3>
+          <p>Houlihan Lokey · Alantra · Natixis · Macquarie</p>
+        </a>
+        <a class="tile" href="#additional">
+          <div class="num">03</div>
+          <h3>Additional Info</h3>
+          <p>CFA L I &amp; II · 3 languages · karate black belt</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 EDUCATION -->
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="sec-head"><span class="num">01</span><h2>Education</h2></div>
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <h3>Columbia Business School</h3>
+            <div class="role">MBA, AI &amp; Data Analytics</div>
+          </div>
+          <div class="meta">New York, NY<br>2026–2027</div>
+        </div>
+        <dl class="facts">
+          <dt>Awards</dt><dd>Dean's List</dd>
+          <dt>Relevant coursework</dt>
+          <dd class="chips">
+            <span class="chip">AI Solutions: From Diagnostics to Deployment</span>
+            <span class="chip">Generative AI for Business</span>
+            <span class="chip">Prompt to Product: Building MVPs with AI</span>
+            <span class="chip">BA II: Foundations of AI</span>
+            <span class="chip">BA III: Modern AI, Deep Learning, and Generative AI</span>
+            <span class="chip">Product Management</span>
+            <span class="chip">Python for MBAs</span>
+          </dd>
+          <dt>Leadership</dt><dd>VP of General Management at CBS Football Club</dd>
+          <dt>Other</dt><dd>Real Estate Finance Teacher Assistant</dd>
+        </dl>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <h3>E.T.S. de Ingenieros de Caminos, Canales y Puertos (UPM)<br>&amp; École des Ponts ParisTech</h3>
+            <div class="role">Double Degree: MSc, BSc and Diplôme d'ingénieur, Civil Engineering — September 2018</div>
+          </div>
+          <div class="meta">Madrid, Spain · Paris, France<br>2011–2018</div>
+        </div>
+        <ul>
+          <li>MSc in Madrid (2017–2018); Diplôme d'ingénieur in Paris (2015–2017); BSc at UPM in Madrid (2011–2015)</li>
+          <li>6-month Erasmus exchange at ULB (Brussels, Belgium)</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- 02 EXPERIENCE -->
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><span class="num">02</span><h2>Experience</h2></div>
+
+      <div class="timeline">
+        <article class="card">
+          <div class="card-top">
+            <div><h3>Euroconsulting AF</h3><div class="role">Investment Advisor</div></div>
+            <div class="meta">Madrid, Spain<br>2024–2025</div>
+          </div>
+          <ul>
+            <li>Structured financing solution and identified creditor for hair transplant clinic group</li>
+            <li>Built extensive Business Plan for modular construction company that supported the signing of its first B2B contract</li>
+            <li>Produced marketing materials for the sale of a vocational education institution</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <details open>
+            <summary>
+              <div class="card-top">
+                <div><h3>Houlihan Lokey</h3><div class="role">Associate, Financial Restructuring and Special Situations Group</div></div>
+                <div class="meta">Madrid, Spain<br>2023–2024</div>
+              </div>
+              <span class="toggle"><span class="more">Show details ▾</span><span class="less">Hide details ▴</span></span>
+            </summary>
+            <ul>
+              <li>Advised major shareholder and creditor of gym chains on restructuring: conducted exhaustive valuation analysis with Deloitte including creditors' recoveries, supervised analyst's analysis (including debt tranches terms) and slides for the board of directors</li>
+              <li>Advised creditors on steel restructuring and subsequent refinancing processes (Poland and senior debt): coordinated process with creditors and advisors, budgeted the expenses, built models, prepared slides for the board, requested approvals, etc.</li>
+              <li>Participated in real estate creditor restructuring: involved in the drafting of the credit agreement, modelled and stressed debt tranches, supervised analyst's deliveries and prepared contract appendixes</li>
+              <li>Led distressed M&amp;A phase I process and drafted teaser + CIM for Naviera Armas sale to Balearia and DFDS</li>
+              <li>Built financial models analyzing a c.€2bn financing NBO in healthcare and strategic alternatives for an aquaculture company</li>
+              <li>Managed 3 analysts and one intern, delivered strategic alternatives materials and monitored public debt</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="card">
+          <details open>
+            <summary>
+              <div class="card-top">
+                <div><h3>Alantra</h3><div class="role">M&amp;A Associate, Power &amp; Infrastructure</div></div>
+                <div class="meta">Madrid, Spain<br>2022–2023</div>
+              </div>
+              <span class="toggle"><span class="more">Show details ▾</span><span class="less">Hide details ▴</span></span>
+            </summary>
+            <ul>
+              <li>Constructed complex models, prepared IC Memos and CIMs and oversaw analysts' deliveries on closed transactions: sale of a greenfield portfolio of biomethane plants, acquisition of a wind and solar PV portfolio, HoldCo financing of solar PV plants</li>
+              <li>Built granular model, performed extensive valuation analysis and drafted documents for a SPAC merger with PV developer; analyzed self-consumption platform acquisition and advised an infrastructure fund to submit a binding offer to acquire a submetering platform in Germany (built model, refined assumptions with energy consultants and prepared slides for the IC)</li>
+              <li>Worked directly with the Managing Director on transactions, managed 2 analysts, assisted advisors on calls and in their interactions with other parties, supervised analysts, created valuation models, produced pitches and conducted mappings</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="card">
+          <details open>
+            <summary>
+              <div class="card-top">
+                <div><h3>Natixis Partners</h3><div class="role">M&amp;A Analyst, Generalist</div></div>
+                <div class="meta">Madrid, Spain<br>2018–2022</div>
+              </div>
+              <span class="toggle"><span class="more">Show details ▾</span><span class="less">Hide details ▴</span></span>
+            </summary>
+            <ul>
+              <li>Closed projects: sale of a tolls payment system, acquisition of online education marketplace, acquisition of IT consulting company, sale of aesthetics device manufacturer, sale of cybersecurity and IT consulting company, sale of car rental company</li>
+              <li>Other processes in the following industries: food ingredients, vehicle inspection, automotive, real estate and oil and gas</li>
+              <li>Led Q&amp;A calls, managed advisors, built financial models, produced valuation materials, performed accretion and dilution analysis (triggered a sale of a listed Portuguese gas pipeline), drafted pitches in all industries and conducted extensive mappings</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div><h3>Macquarie Infrastructure and Real Assets</h3><div class="role">Business Analyst, Power and Utilities Team</div></div>
+            <div class="meta">London, UK<br>2017–2018</div>
+          </div>
+          <ul>
+            <li>Analyzed investments and coordinated transactions of power assets and utilities across Europe</li>
+            <li>Responsible for Asset Management of Viesgo (power utility, c.€1bn equity ticket) &amp; CLH (oil pipeline, c.€600m equity ticket)</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ADDITIONAL INFORMATION -->
+  <section class="block" id="additional">
+    <div class="wrap">
+      <div class="sec-head"><span class="num">03</span><h2>Additional Information</h2></div>
+      <div class="info-grid">
+        <div class="card"><div class="label">Certifications</div>CFA Levels I and II</div>
+        <div class="card"><div class="label">Languages</div>English, Spanish and French</div>
+        <div class="card"><div class="label">Volunteer Work</div>Designed and delivered educational workshops for children in Ethiopia</div>
+        <div class="card"><div class="label">Interests</div>Martial arts (karate black belt), soccer (former captain of Chipirones FC) and running (completed Madrid Marathon in 2025)</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Antonio Díaz-Barceló Romero</span>
+    <span><a href="mailto:adiazbarceloromero27@gsb.columbia.edu">Email</a> · <a href="https://www.linkedin.com/in/antonio-d%C3%ADaz-barcel%C3%B3-romero-b43325a0" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/antoniodiazbarceloromero-code" target="_blank" rel="noopener">GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

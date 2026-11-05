@@ -1,0 +1,4 @@
+private/
+desktop.ini
+# CV source contains phone number and grades (AGENTS.md: never publish)
+*.pdf
